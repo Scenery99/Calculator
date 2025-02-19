@@ -27,6 +27,17 @@ buttons.forEach(button => {
         expression = "";
       }
     } else {
+      if (value === ".") {
+        const lastPlus = expression.lastIndexOf("+");
+        const lastMinus = expression.lastIndexOf("-");
+        const lastMultiply = expression.lastIndexOf("*");
+        const lastDivide = expression.lastIndexOf("/");
+        const lastOperatorIndex = Math.max(lastPlus, lastMinus, lastMultiply, lastDivide);
+        const currentOperand = expression.slice(lastOperatorIndex + 1);
+          if (currentOperand.includes(".")) {
+            return;
+          }
+      }
       if (expression === "0") {
         expression = "";
       }
